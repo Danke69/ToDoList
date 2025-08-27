@@ -1,0 +1,27 @@
+@model List<TodoWebAppEF.Models.TodoItem>
+
+<h1>Todo List</h1>
+
+<a href="/Todo/Create">新規タスク作成</a>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>タイトル</th>
+        <th>状態</th>
+        <th>操作</th>
+    </tr>
+@foreach(var todo in Model)
+{
+    <tr>
+        <td>@todo.Title</td>
+        <td>@(todo.IsDone ? "完了" : "未完")</td>
+        <td>
+            @if (!todo.IsDone)
+            {
+                <a href="/Todo/Complete/@todo.Id">完了</a>
+            }
+            <a href="/Todo/Delete/@todo.Id">削除</a>
+        </td>
+    </tr>
+}
+</table>
